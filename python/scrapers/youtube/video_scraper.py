@@ -22,9 +22,24 @@ class Scraper:
             except HttpError:
                 raise
 
-            for item in results["items"]:
+            for item in results['items']:
                 count += 1
                 yield item
+                if item['snippet']['totalReplyCount'] > 0:
+                    try:
+                        replies = youtube.comments().list(
+                            part="snippet",
+                            parentId=item['id'],
+                            textFormat="plainText"
+                        ).execute()
+                    except HttpError:
+                        raise
+                    for reply in replies['items']:
+                        count += 1
+                        yield reply
+                        if count >= limit:
+                            break
+
                 if count >= limit:
                     break
 

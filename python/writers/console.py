@@ -4,7 +4,7 @@ class Writer:
         pass
 
     def write(self, review):
-        self._print_console(self.name + ": " + str(review))
+        self._print_console(str(review))
         pass
 
     @staticmethod

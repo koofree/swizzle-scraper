@@ -32,9 +32,21 @@ if __name__ == '__main__':
     connector_name = config_json['scrapers'][scraper_name]['connector']
     writer_name = config_json['scrapers'][scraper_name]['writer']
     limit_count = config_json['scrapers'][scraper_name]['limit']
+    model_name = None
+    if 'model' in config_json['scrapers'][scraper_name]:
+        model_name = config_json['scrapers'][scraper_name]['model']
 
     conn = importlib.import_module('connectors.' + connector_name).Connector(config_json['connectors'])
     writer = importlib.import_module('writers.' + writer_name).Writer(config_json['writers'], name=target_id)
     scraper = importlib.import_module('scrapers.' + package_name).Scraper(conn.api())
+    model = None
+    if model_name:
+        model = importlib.import_module('models.' + model_name).Model
+
     for item in scraper.scrape(target_id, limit=limit_count):
-        writer.write(item)
+        if model:
+            from_func = getattr(model, "from_" + connector_name)
+            t = from_func(item)
+            writer.write(t)
+        else:
+            writer.write(item)
