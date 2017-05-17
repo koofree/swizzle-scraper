@@ -1,0 +1,25 @@
+{
+  "connectors": {
+    "youtube": {
+      "key": "{youtube api key}",
+      "service_name": "youtube",
+      "api_version": "v3"
+    }
+  },
+  "writers": {
+    "console": {
+    },
+    "file": {
+      "path": "{file store path}"
+    }
+  },
+  "scrapers": {
+    "youtube_video_comment": {
+      "connector": "youtube",
+      "package": "youtube.video_scraper",
+      "writer": "console",
+      "limit": 100
+    }
+  },
+  "default": "youtube_video_comment"
+}
