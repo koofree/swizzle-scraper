@@ -4,6 +4,10 @@
       "key": "{youtube api key}",
       "service_name": "youtube",
       "api_version": "v3"
+    },
+    "facebook": {
+      "app_id": "{facebook app id}",
+      "app_secret": "{facebook app secret}"
     }
   },
   "writers": {
@@ -17,6 +21,18 @@
     "youtube_video_comment": {
       "connector": "youtube",
       "package": "youtube.video_scraper",
+      "writer": "console",
+      "limit": 100
+    },
+    "facebook_page_comment": {
+      "connector": "facebook",
+      "package": "facebook.page_comment_scraper",
+      "writer": "console",
+      "limit": 100
+    },
+    "facebook_group_comment": {
+      "connector": "facebook",
+      "package": "facebook.group_comment_scraper",
       "writer": "console",
       "limit": 100
     }
