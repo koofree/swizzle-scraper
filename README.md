@@ -25,5 +25,6 @@ Packages for review scraping from multiple type of web sources.
      
 ### Do you want more then scrapers? Contact to one of these.
 
-- My email address : [koo@getswizzle.com](mailto:koo@getswizzle.com) 
-- My company : [Swizzle Global](http://getswizzle.com) 
+- Email : [koo@getswizzle.com](mailto:koo@getswizzle.com) 
+- USA Company : [Swizzle Global](http://getswizzle.com)
+- 한국 회사 : [스위즐랩스](http://swizzlelabs.com)
