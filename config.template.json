@@ -8,6 +8,9 @@
     "facebook": {
       "app_id": "{facebook app id}",
       "app_secret": "{facebook app secret}"
+    },
+    "browser": {
+      "user_agent": "{user-agent for http request}"
     }
   },
   "writers": {
