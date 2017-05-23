@@ -15,25 +15,26 @@ with open(os.path.join(ROOT_DIR, '../config.json'), 'r') as config_file:
     config_json = json.load(config_file)
 
 
-def scrape(_scraper_name, _target_id):
-    package_name = config_json['scrapers'][_scraper_name]['package']
-    connector_name = config_json['scrapers'][_scraper_name]['connector']
-    writer_name = config_json['scrapers'][_scraper_name]['writer']
-    limit_count = config_json['scrapers'][_scraper_name]['limit']
-    model_name = None
-    if 'model' in config_json['scrapers'][_scraper_name]:
+def scrape(_scraper_name, _target_id, limit=None, package=None, connector=None, writer=None, model=None):
+    package_name = package if package else config_json['scrapers'][_scraper_name]['package']
+    connector_name = connector if connector else config_json['scrapers'][_scraper_name]['connector']
+    writer_name = writer if writer else config_json['scrapers'][_scraper_name]['writer']
+    limit_count = limit if limit else config_json['scrapers'][_scraper_name]['limit']
+
+    model_name = model if model else None
+    if not model_name and 'model' in config_json['scrapers'][_scraper_name]:
         model_name = config_json['scrapers'][_scraper_name]['model']
 
     conn = importlib.import_module('connectors.' + connector_name).Connector(config_json['connectors'])
     writer = importlib.import_module('writers.' + writer_name).Writer(config_json['writers'], name=_target_id)
     scraper = importlib.import_module('scrapers.' + package_name).Scraper(conn.api())
-    model = None
+    model_cls = None
     if model_name:
-        model = importlib.import_module('models.' + model_name).Model
+        model_cls = importlib.import_module('models.' + model_name).Model
 
     for item in scraper.scrape(_target_id, limit=limit_count):
         if model:
-            from_func = getattr(model, "from_" + connector_name)
+            from_func = getattr(model_cls, "from_" + connector_name)
             t = from_func(item)
             writer.write(t)
         else:
