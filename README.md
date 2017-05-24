@@ -22,6 +22,8 @@ Packages for review scraping from multiple type of web sources.
     youtube_video_comment : Scraping youtube comments on a video. Target id is video id.
     facebook_page_comment : Scraping facebook comments on a page. Target id is page id.
     facebook_group_comment : Scraping facebook comments on a group. Target id is group id.
+    twitter_search_comment : Scraping twitter comments by search. Target id is search query.
+    twitter_user_comment : Scraping twitter comments on a user. Target is is display name of twitter.
      
 ### Do you want more then scrapers? Contact to one of these.
 

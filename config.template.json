@@ -5,6 +5,12 @@
       "service_name": "youtube",
       "api_version": "v3"
     },
+    "twitter": {
+      "consumer_key": "{twitter consumer key}",
+      "consumer_secret": "{twitter consumer secret}",
+      "token_key": "{twitter token key}",
+      "token_secret": "{twitter token secret}"
+    },
     "facebook": {
       "app_id": "{facebook app id}",
       "app_secret": "{facebook app secret}"
@@ -23,7 +29,7 @@
   "scrapers": {
     "youtube_video_comment": {
       "connector": "youtube",
-      "package": "youtube.video_scraper",
+      "package": "youtube.video_comment_scraper",
       "writer": "console",
       "limit": 100
     },
@@ -36,6 +42,18 @@
     "facebook_group_comment": {
       "connector": "facebook",
       "package": "facebook.group_comment_scraper",
+      "writer": "console",
+      "limit": 100
+    },
+    "twitter_search_comment": {
+      "connector": "twitter",
+      "package": "twitter.search_comment_scraper",
+      "writer": "console",
+      "limit": 100
+    },
+    "twitter_user_comment": {
+      "connector": "twitter",
+      "package": "twitter.user_comment_scraper",
       "writer": "console",
       "limit": 100
     }

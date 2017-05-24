@@ -2,3 +2,4 @@ pip
 google-api-python-client
 requests
 MechanicalSoup
+oauth2
