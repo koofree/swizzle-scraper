@@ -24,6 +24,9 @@
     },
     "file": {
       "path": "{file store path}"
+    },
+    "csv": {
+      "path": "{file store path}"
     }
   },
   "scrapers": {

@@ -16,6 +16,7 @@ with open(os.path.join(ROOT_DIR, '../config.json'), 'r') as config_file:
 
 
 def scrape(_scraper_name, _target_id, limit=None, package=None, connector=None, writer=None, model=None):
+    print("Start '%s' with target '%s'" % (_scraper_name, _target_id))
     package_name = package if package else config_json['scrapers'][_scraper_name]['package']
     connector_name = connector if connector else config_json['scrapers'][_scraper_name]['connector']
     writer_name = writer if writer else config_json['scrapers'][_scraper_name]['writer']
